@@ -67,5 +67,6 @@ class UserEppo {
         "emailVerified": emailVerified,
         "createAt": createAt?.toIso8601String(),
         "lastSignInTime": lastSignInTime?.toIso8601String(),
+        "rol": rol
       };
 }

@@ -1,7 +1,9 @@
 import 'package:eppo/enums/enum.dart';
+import 'package:eppo/modules/admin/city/bloc/city_bloc.dart';
 import 'package:eppo/modules/auth/bloc/auth_bloc.dart';
 import 'package:eppo/routes/index.route.dart';
 import 'package:eppo/themes/index.theme.dart';
+import 'package:eppo/widgets/bloc/drawer/drawer_bloc.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -33,13 +35,21 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-      providers: [BlocProvider(create: (_) => AuthBloc())],
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Eppo',
-        routes: routes,
-        initialRoute: 'login_screen',
-        theme: getThemeData(DataThemeType.LIGTH),
+      providers: [
+        BlocProvider(create: (_) => AuthBloc()),
+        BlocProvider(create: (_) => DrawerBloc()),
+        BlocProvider(create: (_) => CityBloc())
+      ],
+      child: Builder(
+        builder: (context) {
+          return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            title: 'Eppo',
+            routes: routes,
+            initialRoute: 'login_screen',
+            theme: getThemeData(DataThemeType.LIGTH),
+          );
+        },
       ),
     );
   }

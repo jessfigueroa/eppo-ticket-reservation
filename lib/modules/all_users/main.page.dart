@@ -7,6 +7,7 @@ import 'package:eppo/utils/utils.dart';
 class MainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    initEppoApp(context);
     return BlocBuilder<AuthBloc, AuthState>(
       builder: (context, state) {
         return Scaffold(

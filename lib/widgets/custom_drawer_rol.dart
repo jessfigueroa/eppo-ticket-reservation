@@ -13,7 +13,7 @@ class CustomDrawerView extends StatelessWidget {
           child: Column(
             children: [
               _HeaderWidget(),
-              // _MenuWidget(),
+              _MenuWidget(),
               _CerrarSesion(),
               Text(
                 _TEXT_VERSION,
@@ -100,105 +100,105 @@ class _HeaderWidget extends StatelessWidget {
   }
 }
 
-// class _MenuWidget extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     final drawerBloc = BlocProvider.of<DrawerBloc>(context);
+class _MenuWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final drawerBloc = BlocProvider.of<DrawerBloc>(context);
 
-//     // final menu = obtenerMenuPorRol(
-//     // drawerBloc.add(OnAddMenu(menu));
+    // final menu = obtenerMenuPorRol(
+    // drawerBloc.add(OnAddMenu(menu));
 
-//     return Expanded(
-//       child: SingleChildScrollView(
-//         physics: BouncingScrollPhysics(),
-//         child: BlocBuilder<DrawerBloc, DrawerState>(
-//           builder: (context, state) {
-//             return ExpansionPanelList(
-//               expansionCallback: (panelIndex, isExpanded) {
-//                 drawerBloc.add(OnExpandItem(panelIndex));
-//               },
-//               children: [..._getMenuList(state.menu, context)],
-//             );
-//           },
-//         ),
-//       ),
-//     );
-//   }
+    return Expanded(
+      child: SingleChildScrollView(
+        physics: BouncingScrollPhysics(),
+        child: BlocBuilder<DrawerBloc, DrawerState>(
+          builder: (context, state) {
+            return ExpansionPanelList(
+              expansionCallback: (panelIndex, isExpanded) {
+                drawerBloc.add(OnExpandItem(panelIndex));
+              },
+              children: [..._getMenuList(state.menu, context)],
+            );
+          },
+        ),
+      ),
+    );
+  }
 
-//   List<ExpansionPanel> _getMenuList(List<Menu> menu, BuildContext context) {
-//     final usuarioRol = BlocProvider.of<LoginBloc>(context).state.usuario.rol;
+  List<ExpansionPanel> _getMenuList(List<Menu> menu, BuildContext context) {
+    final String usuarioRol =
+        BlocProvider.of<AuthBloc>(context).state.currentUser?.rol ?? 'CLIENTE';
+    return menu
+        .map(
+          (e) => ExpansionPanel(
+            canTapOnHeader: true,
+            headerBuilder: (context, isExpanded) {
+              return ListTile(
+                title: Text(e.texto ?? 'No Menú'),
+              );
+            },
+            body: Column(
+              children: [
+                ...e.subMenu!.map((e) {
+                  Widget submenu = Container();
+                  bool matchRol = false;
+                  e.roles.forEach((rol) {
+                    if (!matchRol) {
+                      switch (rol) {
+                        case "ALL":
+                          submenu = getMenuListTile(context, e);
+                          matchRol = true;
+                          break;
+                        default:
+                          if (usuarioRol == rol) {
+                            submenu = getMenuListTile(context, e);
+                            matchRol = true;
+                            break;
+                          }
+                          submenu = Container();
+                          break;
+                      }
+                    }
+                  });
+                  return submenu;
+                }).toList()
+              ],
+            ),
+            isExpanded: e.expanded,
+          ),
+        )
+        .toList();
+  }
 
-//     return menu
-//         .map(
-//           (e) => ExpansionPanel(
-//             canTapOnHeader: true,
-//             headerBuilder: (context, isExpanded) {
-//               return ListTile(
-//                 title: Text(e.texto),
-//               );
-//             },
-//             body: Column(
-//               children: [
-//                 ...e.subMenu.map((e) {
-//                   Widget submenu = Container();
-//                   bool matchRol = false;
-//                   e.roles.forEach((rol) {
-//                     if (!matchRol) {
-//                       switch (rol) {
-//                         case "ALL":
-//                           submenu = getMenuListTile(context, e);
-//                           matchRol = true;
-//                           break;
-//                         default:
-//                           if (usuarioRol == rol) {
-//                             submenu = getMenuListTile(context, e);
-//                             matchRol = true;
-//                             break;
-//                           }
-//                           submenu = Container();
-//                           break;
-//                       }
-//                     }
-//                   });
-//                   return submenu;
-//                 }).toList()
-//               ],
-//             ),
-//             isExpanded: e.expanded,
-//           ),
-//         )
-//         .toList();
-//   }
-
-//   getMenuListTile(BuildContext context, SubMenu item) {
-//     return ListTile(
-//       title: Text(item.texto),
-//       leading: Icon(item.icon),
-//       trailing: Icon(
-//         Icons.keyboard_arrow_right,
-//         color: Colors.blue,
-//       ),
-//       onTap: () => _tapMenuElement(
-//         context,
-//         item.ruta,
-//         item.rutaName,
-//       ),
-//     );
-//   }
-// }
+  getMenuListTile(BuildContext context, SubMenu item) {
+    return ListTile(
+      title: Text(item.texto ?? 'No SubMenú'),
+      leading: Icon(item.icon),
+      trailing: Icon(
+        Icons.keyboard_arrow_right,
+        color: Colors.blue,
+      ),
+      onTap: () => _tapMenuElement(
+        context,
+        item.ruta ?? Container(),
+        item.rutaName ?? 'no_route',
+      ),
+    );
+  }
+}
 
 _tapMenuElement(BuildContext context, Widget page, String rutaName) {
-  // final currentRoute = ModalRoute.of(context).settings.name;
-  // print(currentRoute);
-  // Navigator.pop(context);
-  // if (currentRoute != rutaName) {
-  //   Navigator.pushReplacement(
-  //     context,
-  //     navegarMapaFadeIn(context, page, rutaName: rutaName),
-  //   );
-  // } else {
-  print("es la misma ruta no cambia");
-  // }
+  final currentRoute = ModalRoute.of(context)?.settings.name;
+  print(currentRoute);
+  Navigator.pop(context);
+  if (currentRoute != rutaName) {
+    Navigator.pushReplacement(
+      context,
+      navegarMapaFadeIn(context, page, rutaName: rutaName),
+    );
+  } else {
+    print("es la misma ruta no cambia");
+  }
 }
 
 class _CerrarSesion extends StatelessWidget {
