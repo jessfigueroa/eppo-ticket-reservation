@@ -1,5 +1,5 @@
 import 'package:eppo/modules/admin/bus/bus.page.dart';
-import 'package:eppo/modules/admin/city/city.page.dart';
+import 'package:eppo/modules/admin/city/__city.dart';
 import 'package:eppo/modules/admin/destination/destination.page.dart';
 import 'package:eppo/modules/admin/payment_method/pay_method.page.dart';
 import 'package:eppo/modules/admin/schedule/schedule.page.dart';
@@ -19,4 +19,5 @@ final Map<String, Widget Function(BuildContext)> routes = {
   'payment_screen': (_) => PaymentMethodPage(),
   'schedule_screen': (_) => SchedulePage(),
   'user_admin_screen': (_) => UserAdminPage(),
+  'create_city_screen': (_) => CreateCityPage()
 };

@@ -13,7 +13,13 @@ getThemeData(DataThemeType type) {
 }
 
 getLigthTheme() {
-  return ThemeData.light().copyWith(primaryColor: PRIMARY_COLOR_THEME);
+  return ThemeData.light().copyWith(
+    primaryColor: PRIMARY_COLOR_THEME,
+    accentColor: ACCENT_COLOR_THEME,
+    floatingActionButtonTheme: FloatingActionButtonThemeData().copyWith(
+      backgroundColor: ACCENT_COLOR_THEME,
+    ),
+  );
 }
 
 getDarkTheme() {

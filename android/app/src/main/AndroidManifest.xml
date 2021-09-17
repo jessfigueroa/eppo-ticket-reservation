@@ -3,6 +3,8 @@
    <application
         android:label="eppo"
         android:icon="@mipmap/ic_launcher">
+        <meta-data android:name="com.google.android.geo.API_KEY"
+               android:value="AIzaSyDZtVvb8Y5pyyaeCeddMPvN9CFrHVjPLB0"/>
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

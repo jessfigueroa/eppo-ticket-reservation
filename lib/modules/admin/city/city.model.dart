@@ -1,7 +1,8 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+part of '__city.dart';
 
 class CityModel {
   CityModel({
+    this.uid,
     this.address,
     this.latitude,
     this.longitude,
@@ -9,6 +10,7 @@ class CityModel {
     this.status,
   });
 
+  String? uid;
   String? address;
   String? latitude;
   String? longitude;
@@ -18,6 +20,7 @@ class CityModel {
   factory CityModel.fromFirestoreDocument(QueryDocumentSnapshot<Object?>? doc) {
     final json = doc?.data() as Map<String, dynamic>;
     return CityModel(
+      uid: doc?.id,
       address: json["address"],
       latitude: json["latitude"],
       longitude: json["longitude"],
@@ -31,8 +34,16 @@ class CityModel {
   }
 
   String get coords {
-    return '$latitude;$longitude';
+    return '$this.latitude;$this.longitude';
   }
+
+  LatLng getLatLng() {
+    double lat = double.parse(this.latitude ?? '-5.185559740322096');
+    double lng = double.parse(this.longitude ?? '-80.68122926814452');
+    return LatLng(lat, lng);
+  }
+
+  bool get isNew => this.uid == null;
 
   Map<String, dynamic> toJson() => {
         "address": address,

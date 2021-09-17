@@ -36,6 +36,8 @@ dependencies:
   flutter_bloc: ^7.1.0
   flutter_logs: ^2.1.4
   animate_do: ^2.0.0
+  google_maps_flutter: ^2.0.9
+  geolocator: ^7.6.2
 
 dev_dependencies:
   flutter_test:

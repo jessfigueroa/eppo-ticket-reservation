@@ -1,5 +1,4 @@
-import 'package:eppo/models/user.model.dart';
-import 'package:eppo/modules/admin/city/bloc/city_bloc.dart';
+import 'package:eppo/modules/admin/city/blocs/city/city_bloc.dart';
 import 'package:eppo/widgets/bloc/drawer/drawer_bloc.dart';
 import 'package:eppo/widgets/helpers/helpers.dart';
 import 'package:flutter/cupertino.dart';
