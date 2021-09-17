@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "950069063967",
+    "project_id": "eppo-ticket-reservation",
+    "storage_bucket": "eppo-ticket-reservation.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:950069063967:android:b2954f2f513da2475b802a",
+        "android_client_info": {
+          "package_name": "com.example.eppo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "950069063967-shgl5l75ah88fmi2mi81n6pfi5qnb90v.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.eppo",
+            "certificate_hash": "f90cfac4a40b39b42a351e485e21f1b336d105a6"
+          }
+        },
+        {
+          "client_id": "950069063967-obheaqdt3np2a4b0cf5sg9q87dqas8gn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC-aCGmcx_sktCqNp1CsPKfc8EhTxE8uHs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "950069063967-obheaqdt3np2a4b0cf5sg9q87dqas8gn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
