@@ -9,3 +9,9 @@ class OnCreateEditCity extends CityEvent {
   final CityModel city;
   OnCreateEditCity(this.city);
 }
+
+class OnSaveCity extends CityEvent {
+  final CityModel city;
+  final FormSubmitTypeState formSubmitTypeState;
+  OnSaveCity(this.city, this.formSubmitTypeState);
+}

@@ -90,3 +90,56 @@ class _FatButtonIcon extends StatelessWidget {
     );
   }
 }
+
+class BotonForm extends StatelessWidget {
+  // final Stream stream;
+  final bool enabled;
+  final Function onPressed;
+  final String text;
+  final Color colorText;
+  // final bool noLogin;
+  final Color? color;
+
+  const BotonForm({
+    required this.onPressed,
+    required this.text,
+    this.enabled = true,
+    // this.noLogin = false,
+    this.colorText = Colors.white,
+    this.color,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 50,
+      width: double.infinity,
+      child: ElevatedButton(
+        style: ButtonStyle(
+          backgroundColor: MaterialStateProperty.all(
+            enabled ? color : Colors.grey[400],
+          ),
+          padding: MaterialStateProperty.all(EdgeInsets.all(0)),
+          shape: MaterialStateProperty.all(
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+          ),
+        ),
+        onPressed: enabled ? () => onPressed() : null,
+        child: Container(
+          decoration: BoxDecoration(
+            color: enabled ? color : null,
+            borderRadius: BorderRadius.circular(10),
+          ),
+          width: double.infinity,
+          height: double.infinity,
+          child: Center(
+            child: Text(
+              text,
+              style: TextStyle(color: colorText),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}

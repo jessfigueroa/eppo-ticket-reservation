@@ -4,7 +4,7 @@ part of '__city.dart';
 
 const _TEXT_TITLE_SCREEN = 'Locales';
 const _TEXT_NO_DATA = 'No hay locales registrados!';
-
+const _TEXT_BTN_SAVE = 'Guardar';
 //################# functions
 
 _goToCreatePage(BuildContext context) {
@@ -14,8 +14,13 @@ _goToCreatePage(BuildContext context) {
   Navigator.pushNamed(context, 'create_city_screen');
 }
 
-_goToEditeCity(BuildContext context, CityModel city) {
+_goToEditCity(BuildContext context, CityModel city) {
   final cityBloc = BlocProvider.of<CityBloc>(context);
   cityBloc.add(OnCreateEditCity(city));
   Navigator.pushNamed(context, 'create_city_screen');
+}
+
+_saveCity(BuildContext context, CityModel city, FormSubmitTypeState state) {
+  final cityBloc = BlocProvider.of<CityBloc>(context);
+  cityBloc.add(OnSaveCity(city, state));
 }

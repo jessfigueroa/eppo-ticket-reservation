@@ -1,4 +1,7 @@
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:eppo/modules/admin/city/__city.dart';
 
 class CityService {
   CityService() {
@@ -10,5 +13,9 @@ class CityService {
 
   Stream<QuerySnapshot> get cities {
     return _cityReference.snapshots();
+  }
+
+  Future<void> save(CityModel city) async {
+    await _cityReference.doc(city.uid).set(city.toJson());
   }
 }

@@ -47,8 +47,8 @@ class CityModel {
 
   Map<String, dynamic> toJson() => {
         "address": address,
-        "latitude": latitude,
-        "longitude": longitude,
+        "latitude": '-5.182155497453376',
+        "longitude": ' -80.64317018117018',
         "name": name,
         "status": status,
       };
