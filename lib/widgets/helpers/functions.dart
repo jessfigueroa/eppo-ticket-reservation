@@ -38,7 +38,7 @@ Menu getMenuConfiguraciones({bool expanded = false}) {
       roles: ["ADMIN"],
     ),
     SubMenu(
-      ruta: PaymentMethodPage(),
+      ruta: PaymentPage(),
       icon: Icons.credit_card_outlined,
       texto: "Metodos de pago",
       rutaName: "payment_screen",

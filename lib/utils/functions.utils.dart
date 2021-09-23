@@ -31,6 +31,10 @@ initEppoApp(BuildContext context) async {
   //Inicializamos los firebase stream
   final cityBloc = BlocProvider.of<CityBloc>(context);
   cityBloc.add(OnSubscribeCities());
+
+  final paymentBloc = BlocProvider.of<PaymentmethodBloc>(context);
+  paymentBloc.add(OnSubscribePayments());
+
   // //Inicializamos los sockets
   // BlocProvider.of<SocketserverBloc>(context).add(
   //   OnInitConectionSocketServer(context),
