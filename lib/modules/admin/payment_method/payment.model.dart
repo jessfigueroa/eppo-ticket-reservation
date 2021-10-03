@@ -40,7 +40,7 @@ class PaymentModel {
       '${name?.substring(0, 1).toUpperCase()}${name?.substring(1)}';
   IconData get iconData => IconData(this.icon, fontFamily: 'MaterialIcons');
   bool get isNew => this.uid == null;
-  String get statusName => this.status! ? 'ACTIVO' : 'INACTIVO';
+  String get statusName => this.status ? 'ACTIVO' : 'INACTIVO';
 
   Map<String, dynamic> toJson() => {
         "colorA": colorA,
