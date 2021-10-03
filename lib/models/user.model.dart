@@ -1,4 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class UserEppo {
   UserEppo({
@@ -13,6 +16,7 @@ class UserEppo {
     this.lastSignInTime,
     this.userIsLogin = false,
     this.rol,
+    this.status = true,
   });
 
   String? name;
@@ -24,38 +28,63 @@ class UserEppo {
   bool? emailVerified;
   DateTime? createAt;
   DateTime? lastSignInTime;
-  bool? userIsLogin;
+  bool userIsLogin;
   String? rol;
+  bool status;
 
-  factory UserEppo.fromFirabase(Map<String, dynamic> json) => UserEppo(
-        name: json['name'],
-        uid: json["uid"],
-        urlPhoto: json["urlPhoto"],
-        phoneNumber: json["phoneNumber"],
-        email: json["email"],
-        providerId: json["providerId"],
-        emailVerified: json["emailVerified"],
-        createAt:
-            json["createAt"] != null ? DateTime.parse(json["createAt"]) : null,
-        lastSignInTime: json["lastSignInTime"] != null
-            ? DateTime.parse(json["lastSignInTime"])
-            : null,
+  factory UserEppo.fromFirabaseDocumentSnapshot(
+      DocumentSnapshot<Object?>? doc) {
+    return UserEppo.fromJson(doc);
+  }
+  factory UserEppo.fromFirabaseQueryDocumentSnapshot(
+      QueryDocumentSnapshot<Object?>? doc) {
+    return UserEppo.fromJson(doc);
+  }
+  factory UserEppo.fromJson(dynamic doc) {
+    final json = doc?.data() as Map<String, dynamic>;
+    return UserEppo(
+      name: json['name'],
+      uid: json["uid"],
+      urlPhoto: json["urlPhoto"],
+      phoneNumber: json["phoneNumber"],
+      email: json["email"],
+      providerId: json["providerId"],
+      emailVerified: json["emailVerified"],
+      createAt:
+          json["createAt"] != null ? DateTime.parse(json["createAt"]) : null,
+      lastSignInTime: json["lastSignInTime"] != null
+          ? DateTime.parse(json["lastSignInTime"])
+          : null,
+      userIsLogin: true,
+      rol: json["rol"],
+      status: json["status"],
+    );
+  }
+  factory UserEppo.fromGooglAuth(User json) => UserEppo(
+        name: json.displayName,
+        uid: json.uid,
+        urlPhoto: json.photoURL,
+        phoneNumber: json.phoneNumber,
+        email: json.email,
+        providerId: json.providerData.first.providerId,
+        emailVerified: json.emailVerified,
+        createAt: json.metadata.creationTime,
+        lastSignInTime: json.metadata.lastSignInTime,
         userIsLogin: true,
-        rol: json["rol"],
+        rol: 'CLIENTE',
+        status: true,
       );
 
-  factory UserEppo.fromGooglAuth(User json) => UserEppo(
-      name: json.displayName,
-      uid: json.uid,
-      urlPhoto: json.photoURL,
-      phoneNumber: json.phoneNumber,
-      email: json.email,
-      providerId: json.providerData.first.providerId,
-      emailVerified: json.emailVerified,
-      createAt: json.metadata.creationTime,
-      lastSignInTime: json.metadata.lastSignInTime,
-      userIsLogin: true,
-      rol: 'CLIENTE');
+  String get capitalName {
+    final nameSplit = this.name!.split(' ');
+    String capitalName = '';
+    nameSplit.forEach((e) {
+      capitalName += e.substring(0, 1).toLowerCase() + e.substring(1);
+    });
+    return capitalName;
+  }
+
+  bool get isSvgExt => this.urlPhoto!.split('.').last == 'svg';
 
   Map<String, dynamic> toJson() => {
         "name": name,

@@ -2,6 +2,7 @@ import 'package:eppo/enums/enum.dart';
 import 'package:eppo/modules/admin/city/blocs/city/city_bloc.dart';
 import 'package:eppo/modules/admin/city/blocs/mi_ubicacion/mi_ubicacion_bloc.dart';
 import 'package:eppo/modules/admin/payment_method/bloc/paymentmethod_bloc.dart';
+import 'package:eppo/modules/admin/user/bloc/user_bloc.dart';
 import 'package:eppo/modules/auth/bloc/auth_bloc.dart';
 import 'package:eppo/routes/index.route.dart';
 import 'package:eppo/themes/index.theme.dart';
@@ -42,7 +43,8 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (_) => DrawerBloc()),
         BlocProvider(create: (_) => CityBloc()),
         BlocProvider(create: (_) => MiUbicacionBloc()),
-        BlocProvider(create: (_) => PaymentmethodBloc())
+        BlocProvider(create: (_) => PaymentmethodBloc()),
+        BlocProvider(create: (_) => UserBloc())
       ],
       child: Builder(
         builder: (context) {

@@ -38,6 +38,8 @@ dependencies:
   animate_do: ^2.0.0
   google_maps_flutter: ^2.0.9
   geolocator: ^7.6.2
+  flutter_svg: ^0.22.0
+  flutter_phone_direct_caller: ^2.0.0
 
 dev_dependencies:
   flutter_test:

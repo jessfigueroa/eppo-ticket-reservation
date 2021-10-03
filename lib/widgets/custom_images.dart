@@ -1,8 +1,9 @@
 part of 'widgets.dart';
 
 class CircularImageAvatar extends StatelessWidget {
-  final String fotoUri;
-  const CircularImageAvatar(this.fotoUri);
+  final String urlPhoto;
+  final bool isSvg;
+  const CircularImageAvatar(this.urlPhoto, {this.isSvg = false});
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -23,9 +24,12 @@ class CircularImageAvatar extends StatelessWidget {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(122),
               // child: Image.network(fotoUri, fit: BoxFit.fill),
-              child: fotoUri.length == 0
-                  ? Image.asset(IMG_PROFILE_DEFAULT)
-                  : Image.network(fotoUri, fit: BoxFit.fill),
+              child: isSvg
+                  ? Image.network(urlPhoto, fit: BoxFit.fill)
+                  : SvgPicture.network(urlPhoto, fit: BoxFit.fill),
+              // fotoUri.length == 0
+              // ? Image.asset(IMG_PROFILE_DEFAULT)
+              // : Image.network(fotoUri, fit: BoxFit.fill),
             ),
           ),
         ),

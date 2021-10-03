@@ -64,9 +64,7 @@ class AuthService {
       final firebaseUser = authResult.user;
       if (firebaseUser != null) {
         final userDoc = await this._userReference.doc(firebaseUser.uid).get();
-        loginUser = UserEppo.fromFirabase(
-          userDoc.data() as Map<String, dynamic>,
-        );
+        loginUser = UserEppo.fromFirabaseDocumentSnapshot(userDoc);
       } else {
         loginUser = UserEppo(userIsLogin: false);
       }
@@ -117,9 +115,7 @@ class AuthService {
           } else {
             final userDoc =
                 await this._userReference.doc(firebaseUser.uid).get();
-            loginUser = UserEppo.fromFirabase(
-              userDoc.data() as Map<String, dynamic>,
-            );
+            loginUser = UserEppo.fromFirabaseDocumentSnapshot(userDoc);
           }
           resp.user = loginUser;
         }

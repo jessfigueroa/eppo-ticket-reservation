@@ -35,6 +35,9 @@ initEppoApp(BuildContext context) async {
   final paymentBloc = BlocProvider.of<PaymentmethodBloc>(context);
   paymentBloc.add(OnSubscribePayments());
 
+  final userBloc = BlocProvider.of<UserBloc>(context);
+  userBloc.add(OnSubscribeUsers());
+
   // //Inicializamos los sockets
   // BlocProvider.of<SocketserverBloc>(context).add(
   //   OnInitConectionSocketServer(context),
