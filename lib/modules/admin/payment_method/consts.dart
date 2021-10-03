@@ -4,6 +4,7 @@ part of '__payment.dart';
 const _TEXT_TITLE_SCREEN = 'Métodos de pago';
 const _TEXT_NO_DATA = 'No hay métodos de pago registrados!';
 const _TEXT_BTN_SAVE = 'Guardar';
+
 //################# functions
 
 _goToCreatePage(BuildContext context) {

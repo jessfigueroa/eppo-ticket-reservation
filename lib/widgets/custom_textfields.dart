@@ -76,3 +76,48 @@ class CustomTextField extends StatelessWidget {
     );
   }
 }
+
+// ignore: must_be_immutable
+class CustomSwitchTileEstado extends StatelessWidget {
+  CustomSwitchTileEstado({
+    required this.estado,
+    required this.onChange,
+    this.color,
+    this.title = "",
+    this.subtitleActive = "",
+    this.subtitleInactive = "",
+  });
+  final String title;
+  final String subtitleActive;
+  final String subtitleInactive;
+
+  final Color? color;
+  final Function(bool) onChange;
+  final bool estado;
+  String estadoText = "";
+  @override
+  Widget build(BuildContext context) {
+    estadoText = "";
+    estado ? estadoText = subtitleActive : estadoText = subtitleInactive;
+    return SwitchListTile(
+      activeColor: color ?? Theme.of(context).primaryColor,
+      value: estado,
+      onChanged: onChange,
+      subtitle: Row(
+        children: [
+          Container(
+            height: 10,
+            width: 10,
+            decoration: BoxDecoration(
+              color: estado ? Colors.green : Colors.red,
+              borderRadius: BorderRadius.circular(10),
+            ),
+          ),
+          SizedBox(width: 10),
+          Text(estadoText),
+        ],
+      ),
+      title: Text(title),
+    );
+  }
+}

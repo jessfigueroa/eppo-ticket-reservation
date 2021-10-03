@@ -45,11 +45,11 @@ class _PaymentBody extends StatelessWidget {
                 final paymentDoc = documents?[index];
                 final payment = PaymentModel.fromFirestoreDocument(paymentDoc);
                 return FatButtonIcon(
-                  payment.icon!,
+                  payment.iconData,
                   payment.capitalName,
                   () => _goToEditPayment(context, payment),
-                  color1: payment.colorA!,
-                  color2: payment.colorB!,
+                  color1: payment.colorDataA,
+                  color2: payment.colorDataB,
                 );
                 // return ListTile(
                 //   onTap: () => _goToEditPayment(context, payment),

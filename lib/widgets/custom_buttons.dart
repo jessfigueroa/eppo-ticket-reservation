@@ -3,7 +3,8 @@ part of 'widgets.dart';
 class FatButtonIcon extends StatelessWidget {
   final IconData icon;
   final String texto;
-  final Color color1, color2;
+  final Color color1;
+  final Color color2;
   final Function() onPress;
 
   const FatButtonIcon(
