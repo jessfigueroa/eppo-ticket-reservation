@@ -60,10 +60,7 @@ class _HeaderWidget extends StatelessWidget {
                 Container(
                   height: 50,
                   width: 50,
-                  child: CircularImageAvatar(
-                    usuario!.urlPhoto!,
-                    isSvg: usuario.isSvgExt,
-                  ),
+                  child: CircularImageAvatar(usuario!.photo),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,

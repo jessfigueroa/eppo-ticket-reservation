@@ -9,19 +9,7 @@ class UserAdminPage extends StatelessWidget {
       ),
       body: _UserBody(),
       drawer: CustomDrawerView(),
-      floatingActionButton: _CreateFloatingButton(),
-    );
-  }
-}
-
-class _CreateFloatingButton extends StatelessWidget {
-  const _CreateFloatingButton({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return FloatingActionButton(
-      onPressed: () => _goToCreatePage(context),
-      child: Icon(Icons.add),
+      // floatingActionButton: _CreateFloatingButton(),
     );
   }
 }
@@ -86,9 +74,7 @@ class ListTileusers extends StatelessWidget {
           width: 50,
           child: ClipRRect(
             borderRadius: BorderRadius.circular(10),
-            child: user.isSvgExt
-                ? Image.network(user.urlPhoto!)
-                : SvgPicture.network(user.urlPhoto!),
+            child: user.photo,
           ),
         ),
       ),
@@ -98,7 +84,7 @@ class ListTileusers extends StatelessWidget {
         icon: Icon(Icons.phone),
         onPressed: () => _callUser(context, user.phoneNumber),
       ),
-      onTap: isSelector ? onTap : () => _detalleUser(context),
+      onTap: isSelector ? onTap : () => _goToDetalleUser(context, user),
       // onLongPress: () {
       //   showAlertEditDeleteIOS(
       //     context,

@@ -14,20 +14,26 @@ _goToCreatePage(BuildContext context) {
   // Navigator.pushNamed(context, 'create_city_screen');
 }
 
-_goToEditUser(BuildContext context, UserEppo city) {
-  // final cityBloc = BlocProvider.of<CityBloc>(context);
-  // cityBloc.add(OnCreateEditCity(city));
-  // Navigator.pushNamed(context, 'create_city_screen');
+_goToEditUser(BuildContext context, UserEppo user) {
+  final cityBloc = BlocProvider.of<UserBloc>(context);
+  cityBloc.add(OnCreateEditUser(user));
+  Navigator.pushNamed(context, 'create_user_screen');
 }
 
-// _saveCity(BuildContext context, CityModel city, FormSubmitTypeState state) {
-//   final cityBloc = BlocProvider.of<CityBloc>(context);
-//   cityBloc.add(OnSaveCity(city, state));
-// }
+_goToDetalleUser(BuildContext context, UserEppo user) {
+  final cityBloc = BlocProvider.of<UserBloc>(context);
+  cityBloc.add(OnCreateEditUser(user));
+  Navigator.pushNamed(context, 'detalle_user_screen');
+}
 
-_callUser(BuildContext context, String? number) {
-  if (number!.isEmpty) {
-    log(number);
+_saveUser(BuildContext context, UserEppo user, FormSubmitTypeState state) {
+  final cityBloc = BlocProvider.of<UserBloc>(context);
+  cityBloc.add(OnSaveUser(user, state));
+}
+
+_callUser(BuildContext context, String? number) async {
+  if (number!.isNotEmpty) {
+    bool? resp = await FlutterPhoneDirectCaller.callNumber(number);
   } else {
     showAlertOkIOS(context, 'Error',
         'Este usuario no tiene número de contacto registrado');

@@ -32,3 +32,36 @@ class CustomBubble extends StatelessWidget {
     );
   }
 }
+
+class PillWidget extends StatelessWidget {
+  final String texto;
+  final Color color;
+  const PillWidget({required this.texto, required this.color});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Container(
+          padding: EdgeInsets.symmetric(horizontal: 10),
+          height: 14,
+          // width: texto.length * 7.5,
+          decoration: BoxDecoration(
+            color: color,
+            borderRadius: BorderRadius.circular(20),
+          ),
+          child: Center(
+            child: Text(
+              texto.trim(),
+              style: TextStyle(
+                fontSize: 10,
+                fontWeight: FontWeight.w700,
+                color: Colors.white,
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}

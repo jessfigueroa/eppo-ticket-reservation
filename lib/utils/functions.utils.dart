@@ -62,3 +62,64 @@ initEppoApp(BuildContext context) async {
   //INICIALIZAMOS LOS HISTORIALES
   // BlocProvider.of<BusquedaBloc>(context).add(OnInicializarHistorial());
 }
+
+String getRolByKey(String key) {
+  switch (key) {
+    case 'ADMIN':
+      return 'Administrador';
+    case 'CLIENTE':
+      return 'Cliente';
+    default:
+      return 'NO_ROL';
+  }
+}
+
+Map<String, String> getCantidadYTiempo(int segundos) {
+  int anyos = (segundos / 31104000).floor();
+  int meses = (segundos / 2592000).floor();
+  int semanas = (segundos / 604800).floor();
+  int dias = (segundos / 86400).floor();
+  int hour = (segundos / 3600).floor();
+  int minute = ((segundos / 60) % 60).floor();
+  if (segundos < 0) {
+    return {"cantidad": "-", "tiempo": "Hace un momento"};
+  }
+  if (anyos > 0) {
+    String term = anyos == 1 ? "Año" : "Años";
+    return {"cantidad": "$anyos", "tiempo": "$term"};
+    // return "${segundos < 0 ? "dentro de" : "hace"}  $anyos $term";
+  } else {
+    if (meses > 0) {
+      String term = meses == 1 ? "Mes" : "Meses";
+      return {"cantidad": "$meses", "tiempo": "$term"};
+      // return "${segundos < 0 ? "dentro de" : "hace"}  $meses $term";
+    } else {
+      if (semanas > 0) {
+        String term = semanas == 1 ? "Semana" : "Semanas";
+        return {"cantidad": "$semanas", "tiempo": "$term"};
+        // return "${segundos < 0 ? "dentro de" : "hace"}  $semanas $term";
+      } else {
+        if (dias > 0) {
+          String term = dias == 1 ? "Día" : "Días";
+          return {"cantidad": "$dias", "tiempo": "$term"};
+          // return "${segundos < 0 ? "dentro de" : "hace"}  $dias $term";
+        } else {
+          if (hour > 0) {
+            String term = hour == 1 ? "Hora" : "Horas";
+            return {"cantidad": "$hour", "tiempo": "$term"};
+            // return "${segundos < 0 ? "dentro de" : "hace"}  $hour $term";
+          } else {
+            if (minute > 0) {
+              String term = minute == 1 ? "Minuto" : "Minutos";
+              return {"cantidad": "$minute", "tiempo": "$term"};
+              // return "${segundos < 0 ? "dentro de" : "hace"}  $minute $term";
+            } else {
+              return {"cantidad": "Hace un momento", "tiempo": "-"};
+              // return "${segundos < 0 ? "dentro de" : "hace"}  un momento";
+            }
+          }
+        }
+      }
+    }
+  }
+}

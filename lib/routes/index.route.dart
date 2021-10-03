@@ -21,5 +21,7 @@ final Map<String, Widget Function(BuildContext)> routes = {
   'schedule_screen': (_) => SchedulePage(),
   'user_admin_screen': (_) => UserAdminPage(),
   'create_city_screen': (_) => CreateCityPage(),
-  'create_payment_screen': (_) => CreatePaymentPage()
+  'create_payment_screen': (_) => CreatePaymentPage(),
+  'create_user_screen': (_) => CreateUserPage(),
+  'detalle_user_screen': (_) => DetalleUserPage(),
 };
