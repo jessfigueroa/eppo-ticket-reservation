@@ -3,6 +3,7 @@ part of 'widgets.dart';
 //########################## LABELS FROM DRAWER VIEW SCREEN ##############################
 const _TEXT_LOGOUT = 'Cerrar Sesión';
 const _TEXT_VERSION = 'V. 0.1.0';
+const _ROUTE_NAME = 'main_screen';
 
 class CustomDrawerView extends StatelessWidget {
   @override
@@ -46,11 +47,11 @@ class _HeaderWidget extends StatelessWidget {
           color: Theme.of(context).primaryColor,
         ),
         GestureDetector(
-          // onTap: () => _tapMenuElement(
-          //   context,
-          //   PerfilUsuarioView(),
-          //   "perfil_usuario_view",
-          // ),
+          onTap: () => _tapMenuElement(
+            context,
+            MainPage(),
+            _ROUTE_NAME,
+          ),
           child: Center(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,

@@ -5,11 +5,12 @@ class SchedulePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: Text('Piura - Mancora (Horarios)'),
+      ),
       body: Center(
         child: Text('Hola Schedule'),
       ),
-      drawer: CustomDrawerView(),
     );
   }
 }

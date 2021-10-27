@@ -44,7 +44,12 @@ class _CityBody extends StatelessWidget {
                 final cityDoc = documents?[index];
                 final city = CityModel.fromFirestoreDocument(cityDoc);
                 return ListTile(
-                  onTap: () => _goToEditCity(context, city),
+                  onTap: () => _goToDestinationPage(
+                    context,
+                    city.destinations!,
+                    city.capitalName,
+                  ),
+                  // _goToEditCity(context, city),
                   leading: Icon(Icons.public),
                   title: Text(city.capitalName),
                   subtitle: Text(city.address ?? ''),

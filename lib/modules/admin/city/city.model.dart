@@ -8,6 +8,7 @@ class CityModel {
     this.longitude,
     this.name,
     this.status,
+    this.destinations,
   });
 
   String? uid;
@@ -16,6 +17,7 @@ class CityModel {
   String? longitude;
   String? name;
   bool? status;
+  CollectionReference<Map<String, dynamic>>? destinations;
 
   factory CityModel.fromFirestoreDocument(QueryDocumentSnapshot<Object?>? doc) {
     final json = doc?.data() as Map<String, dynamic>;
@@ -26,6 +28,7 @@ class CityModel {
       longitude: json["longitude"],
       name: json["name"],
       status: json["status"],
+      destinations: doc!.reference.collection('destinations'),
     );
   }
 

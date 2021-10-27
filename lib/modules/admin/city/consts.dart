@@ -20,6 +20,18 @@ _goToEditCity(BuildContext context, CityModel city) {
   Navigator.pushNamed(context, 'create_city_screen');
 }
 
+_goToDestinationPage(
+  BuildContext context,
+  CollectionReference<Map<String, dynamic>> destinations,
+  String cityName,
+) {
+  final destinyBloc = BlocProvider.of<DestinationBloc>(context);
+  destinyBloc.add(OnDestinationDetail(destinations, cityName));
+  print(destinations);
+  print(cityName);
+  Navigator.pushNamed(context, 'destination_screen');
+}
+
 _saveCity(BuildContext context, CityModel city, FormSubmitTypeState state) {
   final cityBloc = BlocProvider.of<CityBloc>(context);
   cityBloc.add(OnSaveCity(city, state));

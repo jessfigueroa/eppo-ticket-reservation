@@ -16,13 +16,13 @@ List<Menu> obtenerMenuPorRol() {
 
 Menu getMenuConfiguraciones({bool expanded = false}) {
   List<SubMenu> subMenus = [
-    SubMenu(
-      ruta: BusPage(),
-      icon: Icons.car_repair_outlined,
-      texto: "Buses",
-      rutaName: "buse_screen",
-      roles: ["ADMIN"],
-    ),
+    // SubMenu(
+    //   ruta: BusPage(),
+    //   icon: Icons.car_repair_outlined,
+    //   texto: "Buses",
+    //   rutaName: "buse_screen",
+    //   roles: ["ADMIN"],
+    // ),
     SubMenu(
       ruta: CityPage(),
       icon: Icons.public,
@@ -30,13 +30,13 @@ Menu getMenuConfiguraciones({bool expanded = false}) {
       rutaName: "citie_screen",
       roles: ["ADMIN"],
     ),
-    SubMenu(
-      ruta: DestinationPage(),
-      icon: Icons.map_outlined,
-      texto: "Destinos",
-      rutaName: "destination_screen",
-      roles: ["ADMIN"],
-    ),
+    // SubMenu(
+    //   ruta: DestinationPage(),
+    //   icon: Icons.map_outlined,
+    //   texto: "Destinos",
+    //   rutaName: "destination_screen",
+    //   roles: ["ADMIN"],
+    // ),
     SubMenu(
       ruta: PaymentPage(),
       icon: Icons.credit_card_outlined,
@@ -44,13 +44,13 @@ Menu getMenuConfiguraciones({bool expanded = false}) {
       rutaName: "payment_screen",
       roles: ["ADMIN"],
     ),
-    SubMenu(
-      ruta: SchedulePage(),
-      icon: Icons.schedule_outlined,
-      texto: "Horarios",
-      rutaName: "schedule_screen",
-      roles: ["ADMIN"],
-    ),
+    // SubMenu(
+    //   ruta: SchedulePage(),
+    //   icon: Icons.schedule_outlined,
+    //   texto: "Horarios",
+    //   rutaName: "schedule_screen",
+    //   roles: ["ADMIN"],
+    // ),
     SubMenu(
       ruta: UserAdminPage(),
       icon: Icons.person_pin_circle,

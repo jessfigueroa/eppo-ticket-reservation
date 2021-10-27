@@ -1,7 +1,8 @@
 part of '../__user.dart';
 
 class DetalleUserPage extends StatefulWidget {
-  const DetalleUserPage({Key? key}) : super(key: key);
+  final bool isPerfil;
+  const DetalleUserPage({Key? key, this.isPerfil = false}) : super(key: key);
 
   @override
   _DetalleUserPageState createState() => _DetalleUserPageState();
@@ -16,19 +17,21 @@ class _DetalleUserPageState extends State<DetalleUserPage> {
   void initState() {
     _userBloc = BlocProvider.of<UserBloc>(context);
     _user = _userBloc!.state.user;
-    _title = _user?.isNew ?? true ? "Nuevo Prospecto" : _user?.name;
+    _title = widget.isPerfil ? "Mi perfil" : _user?.name;
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(_title ?? ''),
-      ),
+      appBar: widget.isPerfil
+          ? null
+          : AppBar(
+              title: Text(_title ?? ''),
+            ),
       body: Container(
         child: SingleChildScrollView(
-          child: _BodyUsuarioDetalle(),
+          child: _BodyUsuarioDetalle(isPerfil: widget.isPerfil),
         ),
       ),
     );
@@ -96,14 +99,16 @@ class __BodyUsuarioDetalleState extends State<_BodyUsuarioDetalle> {
                           PillWidget(texto: '24', color: Colors.blue)
                         ],
                       ),
-                      OutlinedButton(
-                        onPressed: () => _goToEditUser(context, user),
-                        child: Text(
-                          "Editar",
-                          style:
-                              TextStyle(color: Theme.of(context).primaryColor),
-                        ),
-                      )
+                      widget.isPerfil
+                          ? Container()
+                          : OutlinedButton(
+                              onPressed: () => _goToEditUser(context, user),
+                              child: Text(
+                                "Editar",
+                                style: TextStyle(
+                                    color: Theme.of(context).primaryColor),
+                              ),
+                            )
                       // : Container(),
                     ],
                   )
