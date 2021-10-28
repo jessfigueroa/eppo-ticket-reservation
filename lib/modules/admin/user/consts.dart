@@ -33,7 +33,7 @@ _saveUser(BuildContext context, UserEppo user, FormSubmitTypeState state) {
 
 _callUser(BuildContext context, String? number) async {
   if (number!.isNotEmpty) {
-    bool? resp = await FlutterPhoneDirectCaller.callNumber(number);
+    // bool? resp = await FlutterPhoneDirectCaller.callNumber(number);
   } else {
     showAlertOkIOS(context, 'Error',
         'Este usuario no tiene número de contacto registrado');
