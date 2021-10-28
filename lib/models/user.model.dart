@@ -19,6 +19,7 @@ class UserEppo {
     this.rol,
     this.status = true,
     this.dni = '',
+    this.seatNumber,
   });
 
   String? name;
@@ -34,6 +35,7 @@ class UserEppo {
   String? rol;
   bool status;
   String dni;
+  int? seatNumber;
 
   factory UserEppo.fromFirabaseDocumentSnapshot(
       DocumentSnapshot<Object?>? doc) {
@@ -49,7 +51,7 @@ class UserEppo {
       name: json['name'],
       uid: json["uid"],
       urlPhoto: json["urlPhoto"],
-      phoneNumber: json["phoneNumber"],
+      phoneNumber: json["phoneNumber"] ?? '',
       email: json["email"],
       providerId: json["providerId"],
       emailVerified: json["emailVerified"],
@@ -62,6 +64,7 @@ class UserEppo {
       rol: json["rol"],
       status: json["status"],
       dni: json['dni'],
+      seatNumber: json['seat_number'],
     );
   }
   factory UserEppo.fromGooglAuth(User json) => UserEppo(
