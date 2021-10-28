@@ -51,18 +51,41 @@ class _BusesBody extends StatelessWidget {
               itemBuilder: (context, index) {
                 final bus = Bus.fromFirestoreDoc(buses[index]);
                 return Container(
+                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(30),
                     color: Colors.grey,
                   ),
-                  child: Row(
+                  child: Column(
                     children: [
-                      getRigthSeats(bus.rightSeats!),
-                      getLefteats(bus.leftSeats!),
+                      Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.vertical(
+                            top: Radius.circular(20),
+                          ),
+                        ),
+                        child: Center(
+                          child: Text('CABINA'),
+                        ),
+                        height: 120,
+                      ),
+                      SizedBox(height: 15),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Column(
+                            children: getLefteats(bus.leftSeats!),
+                          ),
+                          Column(
+                            children:
+                                getRigthSeats(bus.rightSeats!, bus.leftSeats!),
+                          ),
+                        ],
+                      ),
                     ],
                   ),
                   margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-                  height: getCurrentHeight(context, 0.8),
                 );
               },
             );
@@ -72,18 +95,72 @@ class _BusesBody extends StatelessWidget {
     );
   }
 
-  getRigthSeats(int seats) {
+  getRigthSeats(int seatsRight, int desde) {
     // final
-    for (var i = 0; i < seats; i++) {
-      print('Asiento ${i + 1}');
+    final List<Widget> seatArray = [];
+    for (var i = desde; i < seatsRight; i += 2) {
+      seatArray.add(
+        Row(
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(50),
+              ),
+              height: 50,
+              width: 50,
+              child: Center(child: Text("${i + 1}")),
+            ),
+            SizedBox(width: 5),
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(50),
+              ),
+              height: 50,
+              width: 50,
+              child: Center(child: Text("${i + 2}")),
+            ),
+          ],
+        ),
+      );
+      seatArray.add(
+        SizedBox(height: 5),
+      );
     }
-    return Container();
+    return seatArray;
   }
 
   getLefteats(int seats) {
-    for (var i = 0; i < seats; i++) {
-      print('Asiento ${i + 1}');
+    final List<Widget> seatArray = [];
+    for (var i = 0; i < seats; i += 2) {
+      seatArray.add(
+        Row(
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(50),
+              ),
+              height: 50,
+              width: 50,
+              child: Center(child: Text("${i + 1}")),
+            ),
+            SizedBox(width: 5),
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(50),
+              ),
+              height: 50,
+              width: 50,
+              child: Center(child: Text("${i + 2}")),
+            ),
+          ],
+        ),
+      );
+      seatArray.add(SizedBox(height: 5));
     }
-    return Container();
+    return seatArray;
   }
 }
