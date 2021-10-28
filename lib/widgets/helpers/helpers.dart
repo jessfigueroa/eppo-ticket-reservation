@@ -1,4 +1,4 @@
-import 'package:eppo/modules/admin/bus/bus.page.dart';
+import 'package:eppo/modules/admin/bus/pages/bus.page.dart';
 import 'package:eppo/modules/admin/city/__city.dart';
 import 'package:eppo/modules/admin/destination/__destination.dart';
 import 'package:eppo/modules/admin/payment_method/__payment.dart';

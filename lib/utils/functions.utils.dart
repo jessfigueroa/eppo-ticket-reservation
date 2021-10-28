@@ -123,3 +123,129 @@ Map<String, String> getCantidadYTiempo(int segundos) {
     }
   }
 }
+
+getDay(DateTime localTime) {
+  final day = localTime.weekday - 1;
+  switch (day) {
+    case 0:
+      return 'Lunes ${localTime.day} de ${getMonth(localTime)} del ${localTime.year}';
+    case 1:
+      return 'Martes ${localTime.day} de ${getMonth(localTime)} del ${localTime.year}';
+    case 2:
+      return 'Miercoles ${localTime.day} de ${getMonth(localTime)} del ${localTime.year}';
+    case 3:
+      return 'Jueves ${localTime.day} de ${getMonth(localTime)} del ${localTime.year}';
+    case 4:
+      return 'Viernes ${localTime.day} de ${getMonth(localTime)} del ${localTime.year}';
+    case 5:
+      return 'Sabado ${localTime.day} de ${getMonth(localTime)} del ${localTime.year}';
+    case 6:
+      return 'Domingo ${localTime.day} de ${getMonth(localTime)} del ${localTime.year}';
+
+    default:
+      return 'No day';
+  }
+}
+
+getMonth(DateTime localTime) {
+  switch (localTime.month) {
+    case 0:
+      return 'Enero';
+    case 1:
+      return 'Febrero';
+    case 2:
+      return 'Marzo';
+    case 3:
+      return 'Abril';
+    case 4:
+      return 'Mayo';
+    case 5:
+      return 'Junio';
+    case 6:
+      return 'Julio';
+    case 7:
+      return 'Agosto';
+    case 8:
+      return 'Setiembre';
+    case 9:
+      return 'Octubre';
+    case 10:
+      return 'Noviembre';
+    case 11:
+      return 'Diciembre';
+    default:
+      return 'No month';
+  }
+}
+
+getFecha(DateTime localTime) {
+  return "${localTime.day}-${localTime.month}-${localTime.year}";
+}
+
+getHora(DateTime localTime) {
+  String horaFinal = localTime.hour.toString();
+  String minutosFinal = localTime.minute.toString();
+  String time = "";
+
+  switch (localTime.hour) {
+    case 13:
+      horaFinal = "01";
+      time = "PM";
+      break;
+    case 14:
+      horaFinal = "02";
+      time = "PM";
+      break;
+    case 15:
+      horaFinal = "03";
+      time = "PM";
+      break;
+    case 16:
+      horaFinal = "04";
+      time = "PM";
+      break;
+    case 17:
+      horaFinal = "05";
+      time = "PM";
+      break;
+    case 18:
+      horaFinal = "06";
+      time = "PM";
+      break;
+    case 19:
+      horaFinal = "07";
+      time = "PM";
+      break;
+    case 20:
+      horaFinal = "08";
+      time = "PM";
+      break;
+    case 21:
+      horaFinal = "09";
+      time = "PM";
+      break;
+    case 22:
+      horaFinal = "10";
+      time = "PM";
+      break;
+    case 23:
+      horaFinal = "11";
+      time = "PM";
+      break;
+    case 00:
+      horaFinal = "12";
+      time = "PM";
+      break;
+
+    default:
+      time = "AM";
+      break;
+  }
+  if (minutosFinal.length == 1) {
+    minutosFinal = "0$minutosFinal";
+  }
+  if (horaFinal.length == 1) {
+    horaFinal = "0$horaFinal";
+  }
+  return "$horaFinal:$minutosFinal $time";
+}

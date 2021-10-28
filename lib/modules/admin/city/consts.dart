@@ -27,8 +27,6 @@ _goToDestinationPage(
 ) {
   final destinyBloc = BlocProvider.of<DestinationBloc>(context);
   destinyBloc.add(OnDestinationDetail(destinations, cityName));
-  print(destinations);
-  print(cityName);
   Navigator.pushNamed(context, 'destination_screen');
 }
 

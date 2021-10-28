@@ -11,6 +11,17 @@ class DestinationPage extends StatelessWidget {
             title: Text('Destinos - ${state.cityName}'),
           ),
           body: DestinationBody(),
+          floatingActionButtonLocation:
+              FloatingActionButtonLocation.centerFloat,
+          floatingActionButton: FloatingActionButton(
+            onPressed: () {
+              print('create destino');
+            },
+            child: Icon(
+              Icons.add,
+              color: Colors.black45,
+            ),
+          ),
         );
       },
     );
@@ -41,13 +52,14 @@ class DestinationBody extends StatelessWidget {
             return ListView.builder(
               itemCount: destinies.length,
               itemBuilder: (context, index) {
-                final json = destinies[index].data();
-                final destiny = Destination.fromJsonData(json);
+                final destiny = Destination.fromFirestoreDoc(destinies[index]);
                 final travelTime = getCantidadYTiempo(destiny.travelTime! * 60);
                 return ListTile(
-                  onTap: () {
-                    Navigator.pushNamed(context, 'schedule_screen');
-                  },
+                  onTap: () => _goToScheduleScreen(
+                    context,
+                    destiny,
+                    state.cityName!,
+                  ),
                   title: Text(destiny.name!.toUpperCase()),
                   subtitle: Text(
                     "${travelTime['cantidad']} ${travelTime['tiempo']} - S/. ${destiny.price}",
@@ -82,6 +94,18 @@ class DestinationBody extends StatelessWidget {
         );
       },
     );
+  }
+
+  _goToScheduleScreen(
+    BuildContext context,
+    Destination destiny,
+    String cityName,
+  ) {
+    ScheduleBloc scheduleBloc = BlocProvider.of<ScheduleBloc>(context);
+    scheduleBloc.add(
+      OnScheduleDetail(destiny.schedules!, cityName, destiny.name!),
+    );
+    Navigator.pushNamed(context, 'schedule_screen');
   }
 
   // _getStaticCities() {

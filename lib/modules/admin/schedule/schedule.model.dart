@@ -4,16 +4,19 @@ class Schedule {
   Schedule({
     this.uid,
     this.datetime,
+    this.buses,
   });
 
   String? uid;
   DateTime? datetime;
+  CollectionReference<Map<String, dynamic>>? buses;
 
   factory Schedule.fromFirestoreDocument(QueryDocumentSnapshot<Object?>? doc) {
     final json = doc?.data() as Map<String, dynamic>;
     return Schedule(
-      uid: json["uid"],
-      datetime: DateTime.parse(json["datetime"]),
+      uid: doc!.id,
+      datetime: (json["datetime"] as Timestamp).toDate(),
+      buses: doc.reference.collection('buses'),
     );
   }
 
